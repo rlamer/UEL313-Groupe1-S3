@@ -1,11 +1,3 @@
--- phpMyAdmin SQL Dump
--- version 5.0.1
--- https://www.phpmyadmin.net/
---
--- Hôte : 127.0.0.1
--- Généré le : Dim 06 déc. 2020 à 05:08
--- Version du serveur :  10.4.11-MariaDB
--- Version de PHP : 7.4.3
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -17,6 +9,19 @@ SET time_zone = "+00:00";
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
 /*!40101 SET NAMES utf8mb4 */;
+
+-- Création de l'utilisateur 'watson' avec le mot de passe 'watson'
+CREATE USER IF NOT EXISTS 'watson'@'localhost' IDENTIFIED BY 'watson';
+
+-- Attribution de tous les privilèges sur la base 'watson' à l'utilisateur 'watson'
+INSERT INTO mysql.db (Host, Db, User, Select_priv, Insert_priv, Update_priv, Delete_priv, Create_priv, Drop_priv, Index_priv, Alter_priv)
+VALUES ('localhost', 'watson', 'watson', 'Y', 'Y', 'Y', 'Y', 'Y', 'Y', 'Y', 'Y')
+ON DUPLICATE KEY UPDATE
+Select_priv='Y', Insert_priv='Y', Update_priv='Y', Delete_priv='Y', Create_priv='Y', Drop_priv='Y', Index_priv='Y', Alter_priv='Y';
+
+-- Application des changements de privilèges
+FLUSH PRIVILEGES;
+
 
 --
 -- Base de données : `watson`
@@ -159,5 +164,3 @@ COMMIT;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 
-
-grant all privileges on watson.* to 'watson'@'localhost' identified by 'watson';

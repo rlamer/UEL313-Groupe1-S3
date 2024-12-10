@@ -165,6 +165,7 @@ class LinkDAO extends DAO
     public function deleteAllByUser($userId) {
         $this->getDb()->delete('tl_liens', array('user_id' => $userId));
     }
+    // Flux RSS
     public function findLast($limit) {
     $sql = "SELECT * FROM links ORDER BY created_at DESC LIMIT ?";
     $result = $this->getDb()->fetchAll($sql, [(int) $limit]);

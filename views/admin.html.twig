@@ -63,6 +63,33 @@
                 {% endfor %}
             </table>
         </div>
+
+        <!-- Pagination -->
+        <nav aria-label="Pagination">
+            <ul class="pagination">
+                {% if currentPage > 1 %}
+                    <li class="page-item">
+                        <a class="page-link" href="?page={{ currentPage - 1 }}" aria-label="Previous">
+                            <span aria-hidden="true">&laquo;</span>
+                        </a>
+                    </li>
+                {% endif %}
+                {% for page in 1..totalPages %}
+                    <li class="page-item {% if page == currentPage %}active{% endif %}">
+                        <a class="page-link" href="?page={{ page }}">{{ page }}</a>
+                    </li>
+                {% endfor %}
+                {% if currentPage < totalPages %}
+                    <li class="page-item">
+                        <a class="page-link" href="?page={{ currentPage + 1 }}" aria-label="Next">
+                            <span aria-hidden="true">&raquo;</span>
+                        </a>
+                    </li>
+                {% endif %}
+            </ul>
+        </nav>
+        <!-- End of Pagination -->
+
         {% else %}
         <div class="alert alert-warning">No links found.</div>
         {% endif %}

@@ -165,4 +165,46 @@ class LinkDAO extends DAO
     public function deleteAllByUser($userId) {
         $this->getDb()->delete('tl_liens', array('user_id' => $userId));
     }
+    // Flux RSS
+    public function findLast($limit) {
+    $sql = "SELECT * FROM links ORDER BY created_at DESC LIMIT ?";
+    $result = $this->getDb()->fetchAll($sql, [(int) $limit]);
+
+    $links = [];
+    foreach ($result as $row) {
+        $links[] = $this->buildDomainObject($row);
+    }
+    return $links;
+    }
+
+    /**
+     * Returns a paginated list of links.
+     *
+     * @param integer $limit Number of links per page.
+     * @param integer $offset Offset for the SQL query.
+     *
+     * @return array A list of links for the specified page.
+     */
+    public function findPaginated($limit, $offset) {
+    $sql = "
+        SELECT * 
+        FROM tl_liens 
+        ORDER BY lien_id DESC 
+        LIMIT :limit OFFSET :offset
+    ";
+    $stmt = $this->getDb()->prepare($sql);
+    $stmt->bindValue('limit', $limit, \PDO::PARAM_INT);
+    $stmt->bindValue('offset', $offset, \PDO::PARAM_INT);
+    $stmt->execute();
+
+    $result = $stmt->fetchAll(\PDO::FETCH_ASSOC);
+
+    $links = [];
+    foreach ($result as $row) {
+        $links[] = $this->buildDomainObject($row);
+    }
+
+    return $links;
+}
+
 }

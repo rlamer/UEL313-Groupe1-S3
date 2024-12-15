@@ -66,4 +66,40 @@ class HomeController {
             )
         );
     }
+        /**
+     * RSS Feed controller.
+     *
+     * @param Application $app Silex application
+     */
+    public function rssAction(Application $app) {
+        // Récupérer les 15 derniers liens depuis la base de données
+        $sql = "SELECT lien_url, lien_titre, lien_desc, NOW() AS created_at 
+                FROM tl_liens 
+                ORDER BY lien_id DESC 
+                LIMIT 15";
+        $links = $app['db']->fetchAll($sql);
+
+        // Construire le contenu RSS
+        $rssContent = '<?xml version="1.0" encoding="UTF-8"?>';
+        $rssContent .= '<rss version="2.0">';
+        $rssContent .= '<channel>';
+        $rssContent .= '<title>Watson RSS Feed</title>';
+        $rssContent .= '<link>http://localhost:165/</link>';
+        $rssContent .= '<description>Les 15 derniers liens publiés sur Watson</description>';
+
+        foreach ($links as $link) {
+            $rssContent .= '<item>';
+            $rssContent .= '<title>' . htmlspecialchars($link['lien_titre']) . '</title>';
+            $rssContent .= '<link>' . htmlspecialchars($link['lien_url']) . '</link>';
+            $rssContent .= '<description>' . htmlspecialchars($link['lien_desc']) . '</description>';
+            $rssContent .= '<pubDate>' . (new \DateTime($link['created_at']))->format(DATE_RSS) . '</pubDate>';
+            $rssContent .= '</item>';
+        }
+
+        $rssContent .= '</channel>';
+        $rssContent .= '</rss>';
+
+        // Retourner une réponse XML
+        return new Response($rssContent, 200, ['Content-Type' => 'application/rss+xml']);
+    }
 }

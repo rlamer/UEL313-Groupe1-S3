@@ -1,22 +1,26 @@
 body { 
     padding-top: 100px; 
+    font-family: "Montserrat", sans-serif;
 }
 
 #logo{
-	width:230px;
-	height: 0;
-	display: block;
-	overflow: hidden;
-	padding-top: 76px;
-	font-size: 0;
-	background: url("../images/logo.png") no-repeat center center;
+width:230px;
+height: 0;
+display: block;
+overflow: hidden;
+padding-top: 76px;
+font-size: 0;
+background: url("../images/logo.png") no-repeat center center;
 }
 
 .footer {
-    border-top: 1px solid #ccc;
-    padding-top: 10px;
+    padding: 30px;
     text-align: center;
     margin-top: 30px;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    /* box-shadow: 0 -1px 5px rgba(0, 0, 0, 0.1);  */
 }
 
 .articleTitle:hover, .articleTitle:focus {
@@ -31,4 +35,26 @@ body {
 #errorPanel {
     padding-top: 30px;
     padding-bottom: 10px;
+}
+
+.admin-table-inner {
+    background-color: #f5f6f7;
+    margin-top: 30px;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.btn-primary {
+    width: 150px;
+}
+
+.well {
+    margin-top: 30px;
+    max-width: 70%;
+    margin: 30px auto;
+}
+
+.login-wrap .btn-primary {
+    width: 100%;
+    margin-top: 20px;
 }

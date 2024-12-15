@@ -3,20 +3,44 @@
 {% block title %}Home{% endblock %}
 
 {% block content %}
-	<div class="row">
-		{% for link in links %}
-			<div class="col-md-4">
-			    <h2><a class="linkTitle" href="{{ path('link', { 'id': link.id }) }}">{{ link.title }}</a></h2>
-			    <p>{{ link.desc }}</p>
-			    <a href="{{ link.url }}" title="" target="_blank">Open ></a>
-			    <em>(by {{ link.user.username }})</em>
-
-			    {% for tag in link.tags %}
-			    	<a href="{{ path('tag', { 'id': tag.id }) }}" title="Filtrer">
-			    		{{ tag.title }}
-			    	</a>
-			    {% endfor %}
-			</div>
-		{% endfor %}
-	</div>
+<div class="container mt-5">
+    <div class="text-center mb-4">
+        <h1 class="display-4 fw-bold">Explorez nos derniers liens enregistrés</h1>
+        <p class="lead text-muted">Nos liens enregistrés par notre communauté.</p>
+    </div>
+    
+    <div class="row g-4">
+        {% for link in links %}
+            <div class="col-md-6 col-lg-4">
+                <div class="card shadow-lg border-0 rounded-4 h-100">
+                    <div class="card-body d-flex flex-column">
+                        <h3 class="card-title text-primary fw-bold mb-3">
+                            <a href="{{ path('link', { 'id': link.id }) }}" 
+                               class="text-decoration-none">
+                                {{ link.title }}
+                            </a>
+                        </h3>
+                        <p class="card-text text-muted flex-grow-1">
+                            {{ link.desc|length > 150 ? link.desc|slice(0, 150) ~ '...' : link.desc }}
+                        </p>
+                        <a href="{{ link.url }}" class="btn btn-primary btn-lg mt-3 w-100" target="_blank">
+                            Open Link <i class="bi bi-box-arrow-up-right ms-2"></i>
+                        </a>
+                    </div>
+                    <div class="card-footer bg-light border-0 d-flex justify-content-between align-items-center">
+                        <small class="text-muted">by {{ link.user.username }}</small>
+                        <div class="d-flex flex-wrap gap-1">
+                            {% for tag in link.tags %}
+                                <a href="{{ path('tag', { 'id': tag.id }) }}" 
+                                   class="badge rounded-pill bg-secondary text-decoration-none">
+                                    {{ tag.title }}
+                                </a>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</div>
 {% endblock %}

@@ -87,7 +87,7 @@ class AdminController {
         $link     = $app['dao.link']->find($id);
         $linkForm = $app['form.factory']->create(new LinkType(), $link);
 
-        $linkForm->handleRequest($request); // match avant/modif
+        $linkForm->handleRequest($request);
 
         // Get tag associated to link
         $str_tags = $link->getTags();
@@ -111,12 +111,12 @@ class AdminController {
         } 
         
         if ($linkForm->isSubmitted() && $linkForm->isValid()) {
-            // ... else it's a string sented by user and we need save it in db
+            // If tags are a string, process and save them in db
             if(is_string($str_tags) && !empty($str_tags)){
                 $array_tags = explode(' ', $str_tags);
 
-                // Remove old connection
-                $app['dao.tag']->removeConnecion($id);
+                // Remove old connections
+                $app['dao.tag']->removeConnection($id);
                 
                 if(count($array_tags)){
                     foreach($array_tags as $tag){

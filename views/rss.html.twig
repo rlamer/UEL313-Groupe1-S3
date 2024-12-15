@@ -1,0 +1,35 @@
+{% extends "layout.html.twig" %}
+
+{% block title %}RSS Feed - Watson{% endblock %}
+
+{% block content %}
+<div class="container my-5">
+    <div class="text-center mb-5">
+        <h1 class="display-4 fw-bold">Watson RSS Feed</h1>
+        <p class="lead text-muted">Les 15 derniers liens publiés sur Watson</p>
+    </div>
+
+    <div class="row g-4">
+        {% for link in links %}
+            <div class="col-md-6 col-lg-4">
+                <div class="card shadow-lg border-0 h-100">
+                    <div class="card-body d-flex flex-column">
+                        <h5 class="card-title text-primary fw-bold mb-3">
+                            {{ link.lien_titre | e }}
+                        </h5>
+                        <p class="card-text flex-grow-1">
+                            {{ link.lien_desc | e }}
+                        </p>
+                        <a href="{{ link.lien_url | e }}" target="_blank" class="btn btn-primary mt-3">
+                            Visiter le lien
+                        </a>
+                    </div>
+                    <div class="card-footer bg-light text-muted small">
+                        Publié le {{ link.created_at | date("d/m/Y H:i") }}
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

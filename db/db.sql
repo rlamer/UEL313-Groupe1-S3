@@ -50,7 +50,20 @@ CREATE TABLE `tl_liens` (
 INSERT INTO `tl_liens` (`lien_id`, `lien_url`, `lien_titre`, `lien_desc`, `user_id`) VALUES
 (1, 'https://cvtic.unilim.fr/', 'Campus Virtuel TIC', 'Site internet du CvTIC.', 1),
 (2, 'https://duckduckgo.com/', 'Duck Duck Go', 'Le moteur de recherche qui ne trace pas ses utilisateurs.', 1),
-(3, 'https://framasoft.org/', 'Framasoft', 'Un réseau dédié à la promotion du « libre » en général et du logiciel libre en particulier.', 1);
+(3, 'https://framasoft.org/', 'Framasoft', 'Un réseau dédié à la promotion du « libre » en général', 1),
+(4, 'https://www.google.com/', 'Google', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.', 4),
+(5, 'https://fontawesome.com/', 'font awesome', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.', 4),
+(6, 'https://www.instagram.com/', 'Instagram', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.', 4),
+(7, 'https://www.facebook.com/', 'Facebook', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.', 4),
+(8, 'https://x.com/Accueil', 'X (Twitter)', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.', 4),
+(9, 'https://www.linkedin.com/', 'Linkedin', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.', 4),
+(10, 'https://fr.pinterest.com/', 'Pinterest', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.', 4),
+(11, 'https://github.com/', 'Github', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.', 4),
+(12, 'https://openclassrooms.com/fr/', 'OpenClassrooms', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.', 4),
+(13, 'https://www.w3schools.com/', 'W3School', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.', 4),
+(14, 'https://chatgpt.com/', 'ChatGPT', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.', 4),
+(15, 'https://30dayjavascript.js.org/', '30 days Javascript', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.', 4),
+(16, 'https://codepen.io/', 'Code Pen', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.', 4);
 
 -- --------------------------------------------------------
 
@@ -71,7 +84,8 @@ INSERT INTO `tl_tags` (`tag_id`, `tag_name`) VALUES
 (1, 'fac'),
 (2, 'vieprivee'),
 (3, 'opensource'),
-(4, 'apprendre');
+(4, 'apprendre'),
+(5, 'reseaux');
 
 -- --------------------------------------------------------
 
@@ -92,7 +106,20 @@ INSERT INTO `tl_tags_liens` (`tag_id`, `lien_id`) VALUES
 (1, 1),
 (2, 2),
 (3, 2),
-(3, 3);
+(1, 5),
+(1, 4),
+(3, 3),
+(5, 6),
+(5, 7),
+(5, 8),
+(5, 9),
+(5, 10),
+(1, 11),
+(1, 12),
+(1, 13),
+(1, 14),
+(1, 15),
+(1, 16);
 
 -- --------------------------------------------------------
 
@@ -113,7 +140,8 @@ CREATE TABLE `tl_users` (
 --
 
 INSERT INTO `tl_users` (`usr_id`, `usr_name`, `usr_password`, `usr_salt`, `usr_role`) VALUES
-(1, 'admin', 'LsJKppRTEPz4uKrkhScOE6HBSvHuaIcFbAX9FWC7h/f5HffX4TBcFt7p8M0hqvGzFXL+JV8TzEYePoimaosfMQ==', '>=28!7NLw!S37zLjs7Uu[nC', 'ROLE_ADMIN');
+(1, 'admin', 'LsJKppRTEPz4uKrkhScOE6HBSvHuaIcFbAX9FWC7h/f5HffX4TBcFt7p8M0hqvGzFXL+JV8TzEYePoimaosfMQ==', '>=28!7NLw!S37zLjs7Uu[nC', 'ROLE_ADMIN'),
+(4, 'joana', 'Fi+4xHMpG9gPAbnaDpw5ruoWDHp3Ynhfn3N2o/A5HYid9SMQ2ifvzJ8tm4XwvyfZAjS+Mga3uDNO5kXmoocluw==', '18ebb3016066d88c52fba90', 'ROLE_ADMIN');
 
 --
 -- Index pour les tables déchargées

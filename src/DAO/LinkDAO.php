@@ -205,6 +205,6 @@ class LinkDAO extends DAO
     }
 
     return $links;
-}
+    }
 
 }
